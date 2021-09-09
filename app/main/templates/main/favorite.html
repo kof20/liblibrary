@@ -1,0 +1,25 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 g-3"
+     style="margin-left: 10%; margin-right:10%; justify-content: center">
+    {% for favorite in fav %}
+    <div class="card ml-1 mr-1 mt-3">
+        <div class="card-body">
+            <h5 class="card-title">{{favorite.book.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{favorite.book.author}}</h6>
+            <p class="card-text">{{favorite.book.body|truncatechars:"300"}}</p>
+            <a href="/book/{{favorite.book.id}}" class="btn btn-primary">Go to</a>
+            <a href="{% url 'deletefavorite' pk=favorite.book.id %}" class="btn btn-danger">Delete</a>
+            {% if not favorite.is_read %}
+            <a href="{% url 'isread' pk=favorite.book.id %}" class="btn btn-warning">Read</a>
+            {% else %}
+            <a class="btn btn-warning">Already read</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

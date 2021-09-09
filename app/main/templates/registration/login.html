@@ -1,0 +1,19 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+
+<div class="col-4" style="text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;">
+    <form id="add_form" method="post">
+        {% csrf_token %}
+        Username: <p>{{form.username}}</p>
+        Password: <p>{{form.password}}</p>
+    </form>
+    <br>
+    <button type="submit" form="add_form" class="btn btn-primary">Login</button>
+</div>
+<br>
+
+{% endblock %}
